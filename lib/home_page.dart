@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'imports.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _MainPageState createState() => _MainPageState();
 }
 
@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: _buildActivityButtons(),
+            children: _buildActivityButtons(context),
           ),
         ),
         Expanded(child: _buildBlogList()),
@@ -79,31 +79,55 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildActivityButtons() {
+  List<Widget> _buildActivityButtons(BuildContext context) {
     return [
-      Column(
-        children: const [
-          Icon(Icons.surfing, size: 40),
-          Text('Surfing'),
-        ],
+      InkWell(
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SurfingPage()));
+        },
+        child: const Column(
+          children: [
+            Icon(Icons.surfing, size: 40),
+            Text('Surfing'),
+          ],
+        ),
       ),
-      Column(
-        children: const [
-          Icon(Icons.directions_boat, size: 40),
-          Text('Sailing'),
-        ],
+      InkWell(
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const SailingPage()));
+        },
+        child: const Column(
+          children: [
+            Icon(Icons.directions_boat, size: 40),
+            Text('Sailing'),
+          ],
+        ),
       ),
-      Column(
-        children: const [
-          Icon(Icons.sports_basketball, size: 40),
-          Text('Basketball'),
-        ],
+      InkWell(
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const BasketballPage()));
+        },
+        child: const Column(
+          children: [
+            Icon(Icons.sports_basketball, size: 40),
+            Text('Basketball'),
+          ],
+        ),
       ),
-      Column(
-        children: const [
-          Icon(Icons.sports_tennis, size: 40),
-          Text('Tennis'),
-        ],
+      InkWell(
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const TennisPage()));
+        },
+        child: const Column(
+          children: [
+            Icon(Icons.sports_tennis, size: 40),
+            Text('Tennis'),
+          ],
+        ),
       ),
     ];
   }
@@ -119,10 +143,10 @@ class HomePage extends StatelessWidget {
             child: Column(
               children: [
                 Image.network(postImages[index]),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
                   child: Row(
-                    children: const [
+                    children: [
                       Text('Post Title Here',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold)),
@@ -142,6 +166,54 @@ class HomePage extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class SailingPage extends StatelessWidget {
+  const SailingPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Sailing'),
+      ),
+      body: const Center(
+        child: Text('Sailing Page Content'),
+      ),
+    );
+  }
+}
+
+class BasketballPage extends StatelessWidget {
+  const BasketballPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Basketball'),
+      ),
+      body: const Center(
+        child: Text('Basketball Page Content'),
+      ),
+    );
+  }
+}
+
+class TennisPage extends StatelessWidget {
+  const TennisPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Tennis'),
+      ),
+      body: const Center(
+        child: Text('Tennis Page Content'),
+      ),
     );
   }
 }
